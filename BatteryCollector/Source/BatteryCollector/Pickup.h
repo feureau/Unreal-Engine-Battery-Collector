@@ -36,6 +36,11 @@ protected:
 	// True when the pickup can be used, and false when pickup is deactivated.
 	bool bIsActive;
 
+	// function to call when pickup is collected
+	UFUNCTION(BlueprintNativeEvent) void WasCollected();
+
+	virtual void WasCollected_Implementation();
+
 private:
 	//Static mesh to repeesent the pickup in the level.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pickup", meta = (AllowPrivateAccess = "true")) class UStaticMeshComponent* PickupMesh;

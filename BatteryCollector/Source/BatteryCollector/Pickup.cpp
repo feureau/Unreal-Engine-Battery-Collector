@@ -20,6 +20,12 @@ void APickup::BeginPlay() {
 	Super::BeginPlay();
 }
 
+void APickup::WasCollected_Implementation() {
+	// log a debug message
+	FString pickupDebugString = GetName();
+	UE_LOG(LogClass, Log, TEXT("You have collected %s"), *pickupDebugString);
+}
+
 // Called every frame
 void APickup::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
@@ -30,11 +36,11 @@ UStaticMeshComponent * APickup::GetMesh() const {
 }
 
 //Returns active state
-UFUNCTION(BlueprintPure, Category = "Pickup") bool APickup::IsActive() {
+bool APickup::IsActive() {
 	return bIsActive;
 }
 
 // Changes active state
-UFUNCTION(BlueprintCallable, Category = "Pickup") void APickup::SetActive(bool NewPickupState) {
+void APickup::SetActive(bool NewPickupState) {
 	bIsActive = NewPickupState;
 }
